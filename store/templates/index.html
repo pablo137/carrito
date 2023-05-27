@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% block title %} Produc {% endblock %} 
+
 {% block content %}
 
 {% load cart %}
@@ -43,20 +45,20 @@
 								{% csrf_token %}
 								<input hidden type="text" name='product' value='{{product.id}}'>
 								<input hidden type="text" name='remove' value='True'>
-								<input type="submit" value=" - " class="btn btn-block btn-light border-right">
+								<input type="submit" value=" - " class="btn btn-block btn-secondary border-right">
 							</form>
-							<div class="text-center col">{{product|cart_quantity:request.session.cart}} al carrito</div>
+							<div class="mt-1 text-center col">{{product|cart_quantity:request.session.cart}} al carrito</div>
 							<form action="/#{{product.id}}" class="col-2 " method="post">
 								{% csrf_token %}
 								<input hidden type="text" name='product' value='{{product.id}}'>
-								<input type="submit" value=" + " class="btn btn-block btn-light border-left">
+								<input type="submit" value=" + " class="btn btn-block btn-secondary border-left">
 							</form>
 						</div>
 						{% else %}
 						<form action="/#{{product.id}}" method="POST" class="btn-block">
 							{% csrf_token %}
 							<input hidden type="text" name='product' value='{{product.id}}'>
-							<input type="submit" class="float-right btn btn-light  form-control"
+							<input type="submit" class="float-right btn btn-primary  form-control"
 								value="Agregar a carrito">
 						</form>
 						{% endif %}
